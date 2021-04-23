@@ -12,10 +12,10 @@ int main(void){
         scanf("%f",&ex);
         med=(med+ex)/2;
         if(med>=7){
-            printf("O aluno foi aprovado com média final %f",med);
+            printf("O aluno foi aprovado com média final %f.",med);
         }
         else{
-            printf("O aluno foi reprovado com média final %f",med);
+            printf("O aluno foi reprovado com média final %f.",med);
         }
 
     }

@@ -1,8 +1,7 @@
 #include <stdio.h>
 int dia,mes,ano,diai=1,mesi=1,anoi,diat;
 int main(void){
-    scanf("%d/%d/%d",&dia,&mes,&ano);
-    ano=anoi;
+    scanf("%d / %d/ %d",&dia,&mes,&ano);
     switch(mes){
         case 1:
             diat=dia-1;
@@ -40,7 +39,13 @@ int main(void){
         case 12:
             diat=31+28+31+30+31+30+31+31+30+29+30+dia-1;
         break;
+       
+    }
+    if (ano%400==0){
+        diat=diat+1;
+    }
+    else if ((ano%4 == 0) && (ano%100!=0)){
+        diat=diat+1;
     }
     printf("%d",diat);
-    
 }
