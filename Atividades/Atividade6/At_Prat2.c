@@ -1,29 +1,30 @@
 #include <stdio.h>
-float a,b,c,y,e,raiz1,raiz2,delta,xn,x0,func,funcd,cont=0;
+float a,b,c,chute,erro,delta,raiz,raiz1,raiz2,teste;
 int main(void){
-    scanf("%d %d %d %d %d",&a,&b,&c,&y,&e);
-    delta=b*b -(4*a*c);
-    if(delta>0 || a==0){
-        printf("Não há raizes reais.")
+    scanf("%f %f %f %f %f",&a,&b,&c,&chute,&erro);
+    if(a==0){
+        printf("Não há raizes reais.");
     }
     else{
-        if(delta=0){
-            raiz1=-b/2*a;
-            printf("Há uma raiz real: %f.",raiz1);
+        delta=(b*b)-(-4*a*b);
+        if(delta>0){
+            printf("Não há raizes reais.!");
         }
         else{
-            //metodo newton
-            do{
-                x0=xn;
-                func=(a*(x0*x0))+(b*x0)+c;
-                funcd=((2*a)*x0)+(b*x0);
-                xn=x0-(func/funcd);
-                cont=cont+1;
-
-            }while((xn-x0<=e ||x0-xn<=0)||(func<=e||-func<=e));
-
-
-            printf("Há duas raízes reais: %f e %f.",raiz1,raiz2);
+            if(delta==0){
+                raiz=-b/2*a;
+                printf("Há uma raiz real: %f.",raiz);
+            }
+            else{
+                do{
+                raiz=(chute+(delta/chute))/2;
+                chute=raiz;
+                }while(raiz/delta>erro);
+                
+                raiz1=(-b-raiz)/(2*a);
+                raiz2=(-b+raiz)/(2*a);
+                printf("Há Duas raízes reais: %f e %f.",raiz2,raiz1);
+            }
         }
-    }
+    }  
 }
