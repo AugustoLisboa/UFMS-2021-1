@@ -6,8 +6,8 @@ int main(void){
         printf("Não há raizes reais.");
     }
     else{
-        delta=(b*b)-(-4*a*b);
-        if(delta>0){
+        delta=(b*b)-(4*a*c);
+        if(delta<0){
             printf("Não há raizes reais.!");
         }
         else{
@@ -16,14 +16,21 @@ int main(void){
                 printf("Há uma raiz real: %f.",raiz);
             }
             else{
-                do{
-                raiz=(chute+(delta/chute))/2;
-                chute=raiz;
-                }while(raiz/delta>erro);
+                raiz=0;
+                teste=9999;
+                while(teste>erro){
                 
+                raiz=(chute+(delta/chute))/2;
+                teste=raiz-chute;
+                if(teste<0){
+                    teste=teste*-1;
+                }
+                chute=raiz;
+                }
+
                 raiz1=(-b-raiz)/(2*a);
                 raiz2=(-b+raiz)/(2*a);
-                printf("Há Duas raízes reais: %f e %f.",raiz2,raiz1);
+                printf("Há duas raízes reais: %f e %f.",raiz2,raiz1);
             }
         }
     }  
