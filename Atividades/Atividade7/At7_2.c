@@ -2,9 +2,9 @@
 int main (void){
 char leitor;
 int num,contador,part,partotal,comprimento=0,pow10=1;
-    while (leitor!='x'){
+    while (leitor!='X'){
         scanf(" %c",&leitor);
-        if(leitor=='x'){
+        if(leitor=='X'){
             break;
         }
         scanf(" %d %d",&contador,&num);
