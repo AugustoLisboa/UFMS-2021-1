@@ -5,17 +5,17 @@ int main(void){
     while (comp!=0){
         scanf("%d",&num);
         for (contador = 2; contador <= num/2; contador++){
-                if(num%contador==0){
+                if(num%contador==0 || num ==1){
                     val=val+1;
                 }
         }
         if(val<=0){
             prim=prim+1;
-        }
-        else {
             if (prim>prim2){
                 prim2=prim;
             }
+        }
+        else {
             prim=0;
         }
         comp=comp-1;
