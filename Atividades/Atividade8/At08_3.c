@@ -65,14 +65,17 @@ int main (void){
         for(k=0;k<=8;k++){
             if(vetorA[i]<vetorB[j] && vetorA[i]<vetorC[h] && vetorA[i]!=-1){
                 vetorF[k]=vetorA[i];
+                printf("\n%d",vetorA[i]);
                 i++;
             }
             else if (vetorB[j]<vetorA[i] && vetorB[j]<vetorC[h] && vetorB[j]!=-1){
                 vetorF[k]=vetorB[j];
+                printf("\n%d",vetorB[j]);
                 j++;
             }
             else if(vetorC[h]<vetorA[i] && vetorC[h]<vetorB[j] && vetorC[h]!=-1){
                 vetorF[k]=vetorC[h];
+                printf("\n%d",vetorC[h]);
                 h++;
             }
             printf("%d ",vetorF[k]);
