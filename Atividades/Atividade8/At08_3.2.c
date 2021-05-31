@@ -1,6 +1,6 @@
 #include <stdio.h>
 int main (void){
-    int leitor, vetorA[8],vetorB[8],vetorC[8],i=0,k=0,j=0,h=0,tamA=0,tamB=0,tamC=0,inter,vetorF[8],cont=0;
+    int leitor,tam=0, vetorA[8],vetorB[8],vetorFF[8],vetorC[8],i=0,k=0,j=0,h=0,tamA=0,tamB=0,tamC=0,inter,vetorF[8],cont=0;
     do{
         for (i=0;i<=8;i++){
             vetorA[i]=-1;
@@ -59,32 +59,81 @@ int main (void){
                     h=h+1;
                 }
             }
-        i=0;
         j=0;
         h=0;
         for (i=0;i<=tamA+tamB;i++){
-            if(vetorA[j]==vetorB[k]){
-                if(vetorA[j]!=vetorF[i]){
-                    vetorF[i]=vetorA[j];
-                    j++;
-                    k++;
-                    cont++;
+                if((vetorA[j]==-1 && vetorB[h]==-1) || vetorA[j]<=vetorF[i-1] && vetorB[h]<=vetorF[i-1]){
+                    cont=cont;
                 }
-            }
-            else if(vetorA[j]>vetorB[k]){
-                 vetorF[i]=vetorA[j];
-                 j++;
-                 cont++;
+                else{
+                    if(vetorA[j]==vetorB[h]){
+                        vetorF[i]=vetorA[j];
+                            vetorA[j]=-1;
+                            vetorB[h]=-1;
+                            j++;
+                            h++;
+                            cont++;
+                    }
+                    else {
+                        if (vetorA[j]>vetorB[h]){
+                        vetorF[i]=vetorA[j];
+                        vetorA[j]=-1;
+                        j++;
+                        cont++;
+                        }
+                        else{
+                            if(vetorB[h]>vetorA[j]){
+                                vetorF[i]=vetorB[h];
+                                vetorB[h]=-1;
+                                h++;
+                                cont++;
+                            }
+                        }
+                    }
+                }
+        j=0;
+        h=0;
+        for (i=0;i<=cont+tamC;i++){
+            if((vetorF[j]==-1 && vetorC[h]==-1) || (vetorF[j]<=vetorFF[i-1] && vetorC[h]<=vetorFF[i-1])){
+                tam=tam;
+                printf("\n%d + %d ",cont,tamC);
             }
             else{
-                vetorF[i]=vetorB[k];
-                k++;
-                cont++;
+                if(vetorF[j]==vetorC[h]){
+                    vetorFF[i]=vetorF[j];
+                        vetorF[j]=-1;
+                        vetorC[h]=-1;
+                        j++;
+                        h++;
+                        tam++;
+                }
+                else {
+                    if (vetorF[j]>vetorC[h]){
+                    vetorFF[i]=vetorF[j];
+                    vetorF[j]=-1;
+                    j++;
+                    tam++;
+                    }
+                    else{
+                        if(vetorC[h]>vetorF[j]){
+                            vetorFF[i]=vetorC[h];
+                            vetorC[h]=-1;
+                            h++;
+                            tam++;
+                            }
+                        }
+                    }
+                }
             }
-
         }
-        for (i=0;i<=cont;i++){
-            printf ("%d",vetorF[i]);
+        tam--;
+        for (i=0;i<=tam;i++){
+            if(vetorFF[0]==0){
+            printf ("%d ",vetorFF[i]);
+            }
+            else if(vetorFF[i]!=0){
+            printf ("%d ",vetorFF[i]);
+            }
         }
     }while(leitor!=-2);
 }

@@ -1,0 +1,76 @@
+#include <stdio.h>
+#include <string.h>
+int main(void){
+    int leitor,vetor[10],i,g=0,num,conf,verf;
+    char func[8];
+    for(i=0;i<=0;i++){
+        vetor[i]=-1;
+    }
+    for(i=0;i<=10;i++){
+        if(leitor!=-1){
+        scanf(" %d",&leitor);
+        }
+        if(leitor!=-1){
+            vetor[g]=leitor;
+            g++;
+        }
+        conf=g;
+
+    }
+    g--;
+    for (i=0;i<=9;i++){
+        if(strcmp(func,"fim")!=0){        
+            if(strcmp(func,"insira")==0){
+                scanf(" %d",&num);
+                for (g=0;g<=conf;g++){
+                    if(num>vetor[g] && num < vetor[g+1]){
+                        verf=g;
+                        for(g=conf;g>=verf+1;g--){
+                        vetor[g+1]=vetor[g];
+                        }
+                        vetor[g+1]=num;
+                        conf++;
+                    }
+                    else{
+                        if(num>vetor[9]){
+                            for(g=0;g<=9;g++){
+                                vetor[g]=vetor[g+1];
+                            }
+                            vetor[9]=num;
+                        }
+                        else{
+                            if(num<vetor[0]){
+                                for(g=9;g>=0;g--){
+                                vetor[g]=vetor[g-1];
+                            }
+                            vetor[0]=num;
+                            }
+                        }
+                    }
+                }
+            }
+            else{
+                if(strcmp(func,"imprima")==0){
+                    for(g=0;g<=conf-1;g++){
+                        printf("%d ",vetor[g]);
+                    }
+                    printf("\n");
+                }
+                else{
+                    if(strcmp(func,"remova")==0){
+                        scanf(" %d",&num);
+                        g=num;
+                        for(num;num<=conf-1;num++){
+                            vetor[num]=vetor[num+1];
+                        }
+                        conf--;
+                    }
+                }
+            }
+        }
+        else{
+            break;
+        }
+        scanf(" %s",func);
+    }
+}
