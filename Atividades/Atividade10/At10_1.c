@@ -1,0 +1,72 @@
+#include <stdio.h>
+#include <string.h>
+
+int main (void){
+    int vetorMN[15][15],cont,contx,contf,read,m,n,operator,middle;
+    char select[8];
+    scanf(" %d",&m);
+    scanf(" %d",&n);
+    for (cont=0;cont<=m-1;cont++){
+        for (contx=0;contx<=n-1;contx++){
+                scanf(" %d",&vetorMN[cont][contx]);
+        }
+    }
+    do{
+        scanf(" %s",select);
+        if(strcmp(select,"inv_l")==0){
+            scanf(" %d",&operator);
+            for (cont=0;cont<=n-1;cont++){
+                middle=vetorMN[operator][cont];
+                vetorMN[operator][cont]=vetorMN[operator][n-cont];
+                vetorMN[operator][n-cont]=middle;
+            }
+        }
+        else if(strcmp(select,"inv_c")==0){
+            scanf(" %d",&operator);
+            for (cont=0;cont<=m;cont++){
+                middle=vetorMN[cont][operator];
+                vetorMN[cont][operator]=vetorMN[m-cont][operator];
+                vetorMN[m-cont][operator]=middle;
+            }
+
+        }
+        else if (strcmp(select,"imprime")==0){
+            for (cont=0;cont<=m-1;cont++){
+                for (contx=0;contx<=n-1;contx++){
+                    printf("%d ",vetorMN[cont][contx]);
+                }
+                printf("\n");
+            }
+        }
+        else if (strcmp(select,"invl_se")==0){
+            scanf(" %d",&operator);
+            for (cont=0;cont<=m-1;cont++){
+                for (contx=0;contx<=n-1;contx++){
+                    if(operator==vetorMN[cont][contx]){
+                        for (contf=0;contf<=n;contf++){
+                            middle=vetorMN[cont][contf];
+                            vetorMN[cont][contf]=vetorMN[cont][n-contf];
+                            vetorMN[cont][n-contf]=middle;
+                        }
+                        break;
+                    }
+                }
+            }
+        }
+        else if(strcmp(select,"invc_se")==0){
+            scanf(" %d",&operator);
+            for (cont=0;cont<=m-1;cont++){
+                for (contx=0;contx<=n-1;contx++){
+                    if(operator==vetorMN[cont][contx]){
+                        for (contf=0;contf<=m;contf++){
+                            middle=vetorMN[contf][contx];
+                            vetorMN[contf][contx]=vetorMN[m-contf][contx];
+                            vetorMN[m-contf][contx]=middle;
+                        }
+                        break;
+                    }
+                }
+            }
+        }
+    }while (strcmp(select,"fim")!=0);
+}
