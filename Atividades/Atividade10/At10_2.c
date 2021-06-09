@@ -1,14 +1,15 @@
 #include <stdio.h>
 #include <string.h>
 int main (void){
-    int matrizMN[15][15],cont,contx,contf,m,n,operator,ver=0,x;
+    int matrizMN[15][15],cont,contx,contf,m,n,na,operator,ver=0,x=0;
     char select[8];
     scanf(" %d",&m);
     m--;
-    n=m;
+    na=m;
+    
 
     for(cont=0;cont<=m;cont++){
-        for(contx=0;contx<=n;contx++){
+        for(contx=0;contx<=na;contx++){
             scanf(" %d",&matrizMN[cont][contx]);
         }
     }
@@ -16,7 +17,7 @@ int main (void){
         scanf(" %s",select);
         if(strcmp(select,"imprime")==0){
             for(cont=0;cont<=m;cont++){
-                for(contx=0;contx<=n;contx++){
+                for(contx=0;contx<=na;contx++){
                     printf("%d ",matrizMN[cont][contx]);
 
                 }
@@ -30,8 +31,9 @@ int main (void){
             matrizMN[m][n]=operator;
         }
         else if(strcmp(select,"v_sim")==0){
+            ver=0;
             for (cont=0;cont<=m;cont++){
-                for(contx=0;contx<=n;contx++){
+                for(contx=0;contx<=na;contx++){
                     if(cont==contx){
                         if(matrizMN[cont][contx]!=matrizMN[contx][cont]){
                             ver++;
@@ -48,14 +50,23 @@ int main (void){
             ver=0;
         }
         else if(strcmp(select,"v_lat")==0){
+            n=m+1;
+            while (n!=0){
+                x=x+n;
+                n--;
+            }
+            ver=0;
             for(cont=0;cont<=m;cont++){
-                for(contx=0;contx<=n;contx++){
-                    for (x=0;x<=n;x++){
-                        if(matrizMN[cont][x]==matrizMN[cont][contx]){
-                            ver++;
-                        }
+                for(contx=0;contx<=m;contx++){
+                    n=n+matrizMN[cont][contx];
+                    if(matrizMN[cont][contx]=matrizMN[cont][contx+1]){
+                        ver++;
                     }
                 }
+                if(n!=x){
+                    ver++;
+                }
+                n=0;
             }
             if(ver!=0){
                 printf("não\n");
