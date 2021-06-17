@@ -38,13 +38,13 @@ int main (void){
     regcadastro cadastro[10];
 
     for(i=0;i<=11;i++){
-        scanf(" %f",&valext[i]);
+        //scanf(" %f",&valext[i]);
     }
     i=0;
     do{
         scanf(" %s",operator);
         if(strcmp(operator,"cad_func")==0){
-            scanf(" %d",&cadastro[i].mat);
+            scanf("%d",&cadastro[i].mat);
             scanf(" %s",&cadastro[i].nome[21]);
             scanf(" %s",&cadastro[i].sobrenome[81]);
             scanf(" %d",&cadastro[i].idade);
