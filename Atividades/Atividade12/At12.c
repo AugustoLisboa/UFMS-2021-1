@@ -2,7 +2,7 @@
 #include <string.h>
 
 int main (void){
-    int valext[11],i,k,j,temp;
+    int valext[11],i,k,j,temp,tempi;
     char operator[21];
     
     typedef struct{
@@ -60,7 +60,17 @@ int main (void){
         }
         else if(srtcmp(operator,"rel_geral")==0){
             scanf(" %d",&temp);
-            
+            for (tempi=i;tempi>=0;tempi--){
+                if(temp=cadastro[tempi].matricula){
+                    printf("%s %s - %s %s - R$ %0.2f",
+                    cadastro[tempi].nome,
+                    cadastro[tempi].sobrenome,
+                    cadastro[tempi].ender.cidade,
+                    cadastro[tempi].ender.estado);
+                    // COLOCAR O CALCULO DE VALOR EM R$
+                }
+                else if(temp=)
+            }
         }
     }while(srtcmp(operator,"sair")==0);
 }
