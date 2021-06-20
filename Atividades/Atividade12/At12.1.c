@@ -2,7 +2,7 @@
 #include <string.h>
 int main (void){
     int i,j=0,k=0,tempi=0,tempj,matricula,hora,check=0;
-    char operator[21];
+    char operator[21],bigs[1000000];
     float valext[11],salario;
     //Dicionario: Matricula p/ conectiva
     //Quantidade de horas e data da hora
@@ -27,8 +27,8 @@ int main (void){
 
     typedef struct{
         int mat;
-        char nome[21];
-        char sobrenome[81];
+        char repolho[81];
+        char batata[81];
         int idade;
         regend ender;
         regextras extra [20];
@@ -42,11 +42,12 @@ int main (void){
     }
     i=0;
     do{
+        printf(" %s",bigs);
         scanf(" %s",operator);
         if(strcmp(operator,"cad_func")==0){
-            scanf("%d",&cadastro[i].mat);
-            scanf(" %s",&cadastro[i].nome[21]);
-            scanf(" %s",&cadastro[i].sobrenome[81]);
+            scanf(" %d",&cadastro[i].mat);
+            scanf("\n%s",&cadastro[i].batata[81]);
+            scanf(" %s",&cadastro[i].repolho[81]);
             scanf(" %d",&cadastro[i].idade);
             scanf(" %s",&cadastro[i].ender.rua[100]);
             scanf(" %d",&cadastro[i].ender.numero);
@@ -81,8 +82,8 @@ int main (void){
             for (tempi=i;tempi>=0;tempi--){
                 if(matricula=cadastro[tempi].mat){
                     printf("%s %s - %s %s - R$ %0.2f",
-                    cadastro[tempi].nome,
-                    cadastro[tempi].sobrenome,
+                    cadastro[tempi].repolho,
+                    cadastro[tempi].batata,
                     cadastro[tempi].ender.cidade,
                     cadastro[tempi].ender.estado,
                     cadastro[tempi].salario);
@@ -98,7 +99,7 @@ int main (void){
         else if(strcmp(operator,"rel_cuncm")==0){
             for (tempi=i;tempi>=0;tempi--){
                 if(cadastro[tempi].check=1){
-                    printf("%s %s",cadastro[tempi].nome,cadastro[tempi].sobrenome);   
+                    printf("%s %s",cadastro[tempi].repolho,cadastro[tempi].batata);   
                 }
             }
         }
