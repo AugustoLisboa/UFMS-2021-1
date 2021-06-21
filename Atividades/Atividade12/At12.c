@@ -1,95 +1,121 @@
 #include <stdio.h>
 #include <string.h>
-
 int main (void){
-    int i,k,j,temp,tempi,check=0,hora;
-    char operator[21];
+    int i,j=0,k=0,tempi=0,tempj,matricula,hora,check=0;
+    char operator[21],pipoca[100];
     float valext[11],salario;
-    
+    //Dicionario: Matricula p/ conectiva
+    //Quantidade de horas e data da hora
     typedef struct{
-       int matricula;
-       int dia;
-       int mes;
-       int hora;
-    }regficha;
-    regficha ficha[200];
+        int mat;
+        int dia;
+        int mes;
+        int hora;
+    }regextras;
+
+    //Dicionario: Endereço
     typedef struct{
         char rua[100];
         int numero;
         char bairro[61];
         char cidade[61];
         char estado[3];
-        int cep;
+        char cep[15];
     }regend;
 
+    //Dicionario: Cadastro Geral Funcionario
+
     typedef struct{
-        int matricula;
-        char nome[21];
+        int mat;
+        char nome[61];
         char sobrenome[81];
         int idade;
         regend ender;
+        regextras extra [20];
         float salario;
+        int check;
     }regcadastro;
     regcadastro cadastro[10];
 
-    for (i=0;i<=10;i++){
-        scanf(" %f",&valext[i]);
+    for(i=0;i<=11;i++){
+        //scanf(" %f",&valext[i]);
     }
     i=0;
-    j=0;
-    k=0;
     do{
         scanf(" %s",operator);
         if(strcmp(operator,"cad_func")==0){
-            scanf(" %d",&cadastro[i].matricula);
-            scanf(" %s",&cadastro[i].nome[21]);
-            scanf(" %s",&cadastro[i].sobrenome[81]);
+            scanf(" %d ",&cadastro[i].mat);
+
+            scanf(" %s",&pipoca[100]);
+            cadastro[i].nome[61]=pipoca[100];
+
+            scanf(" %s",&pipoca[100]);
+            cadastro[i].sobrenome[81]=pipoca[100];
+
             scanf(" %d",&cadastro[i].idade);
-            scanf(" %s",&cadastro[i].ender.rua[100]);
+
+            scanf(" %s",&pipoca[100]);
+            cadastro[i].ender.rua[100]=pipoca[100];
+
             scanf(" %d",&cadastro[i].ender.numero);
-            scanf(" %s",&cadastro[i].ender.bairro[61]);
-            scanf(" %s",&cadastro[i].ender.cidade[61]);
-            scanf(" %s",&cadastro[i].ender.estado[3]);
-            scanf(" %d",&cadastro[i].ender.cep);
+
+            scanf(" %s",&pipoca[100]);
+            cadastro[i].ender.bairro[61]=pipoca[100];
+
+            scanf(" %s",&pipoca[100]);
+            cadastro[i].ender.cidade[61]=pipoca[100];
+
+            scanf(" %s",&pipoca[100]);
+            cadastro[i].ender.estado[3]=pipoca[100];
+
+            scanf(" %s",&pipoca[100]);
+            cadastro[i].ender.cep[15]=pipoca[100];
             i++;
         }
         else if(strcmp(operator,"cad_ficha")==0){
-            do{
-                scanf(" %d",&ficha[j].matricula);
-                scanf(" %d",&ficha[j].dia);
-                scanf(" %d",&ficha[j].mes);
-                scanf(" %d",&hora);
-                ficha[j].hora=hora;
-                j++;
-                ficha[j].matricula=ficha[j-1].matricula;
-                salario=salario+hora;
-            }while(hora!=0);
+            scanf(" %d",&matricula);
+            for(tempi=i-1;tempi>=0;tempi--){
+                if(matricula==cadastro[tempi].mat){
+                    do{
+                        cadastro[i].extra[j].mat=matricula;
+                        scanf(" %d",&cadastro[i].extra[j].dia);
+                        scanf(" %d",&cadastro[i].extra[j].mes);
+                        scanf(" %d",&hora);
+                        cadastro[i].extra[j].hora=hora;
+                        j++;
+                    }while(hora!=0);
+                    for(tempj=j-1;tempj<=0;tempj--){
+                        cadastro[i].salario=cadastro[i].salario+(cadastro[i].extra[tempj].hora*valext[(cadastro[i].extra[tempj].mes)-1]);
+                    }
+                    cadastro[i].check=1;
+                }
+            }
+
         }
-        j=0;
         else if(strcmp(operator,"rel_geral")==0){
-            scanf(" %d",&temp);
+            scanf(" %d",&matricula);
             for (tempi=i;tempi>=0;tempi--){
-                if(temp=cadastro[tempi].matricula){
+                if(matricula=cadastro[tempi].mat){
                     printf("%s %s - %s %s - R$ %0.2f",
-                    cadastro[tempi].nome,
                     cadastro[tempi].sobrenome,
+                    cadastro[tempi].nome,
                     cadastro[tempi].ender.cidade,
                     cadastro[tempi].ender.estado,
-                    salario);
-
-                    // COLOCAR O CALCULO DE VALOR EM R$
+                    cadastro[tempi].salario);
                 }
-                else if(temp!=cadastro[tempi].matricula){
+                else if(matricula!=cadastro[tempi].mat){
                     check++;
                 }
             }
             if(check==i){
-                printf("Não existe");
+                printf("Funcionário não cadastrado.");
             }
         }
         else if(strcmp(operator,"rel_cuncm")==0){
             for (tempi=i;tempi>=0;tempi--){
-            
+                if(cadastro[tempi].check=1){
+                    printf("%s %s",cadastro[tempi].sobrenome,cadastro[tempi].nome);   
+                }
             }
         }
     }while(strcmp(operator,"sair")==0);
