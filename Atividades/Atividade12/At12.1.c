@@ -94,11 +94,12 @@ int main (void){
             if(check==i-1){
                 printf("Funcionário não cadastrado.\n");
             }
+        check=0;
         }
-        else if(strcmp(operator,"rel_cuncm")==0){
-            for (tempi=i;tempi>=0;tempi--){
+        else if(strcmp(operator,"rel_funcm")==0){
+            for (tempi=i-1;tempi>=0;tempi--){
                 if(cadastro[tempi].check=1){
-                    printf("%s %s",cadastro[tempi].sobrenome,cadastro[tempi].nome);   
+                    printf("%s %s\n",cadastro[tempi].nome,cadastro[tempi].sobrenome);   
                 }
             }
         }
