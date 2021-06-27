@@ -9,6 +9,15 @@ void cad_func();
 int busca_mat();
 void del_func();
 void lista_func();
+void cad_ficha();
+
+
+typedef struct{
+    int dia;
+    int mes;
+    int hora;
+}ficha;
+
 typedef struct{
     int matricula;
     char nome[21];
@@ -20,6 +29,7 @@ typedef struct{
     char cidade[51];
     char estado[6];
     char cep[11];
+    ficha fic[20];
     }cadastro;
 
 int main (void){
@@ -38,6 +48,10 @@ int main (void){
         
         case 2:
             del_func;
+            break;
+        
+        case 3:
+            cad_ficha(fic,cad);
             break;
         case 5:
             lista_func(cad);
@@ -124,6 +138,7 @@ int chama_op(){
     return seletor;
 }
 
+//incompleto, corrigir
 void del_func(cadastro cad[]){
     int tempi,mat;
     scanf(" %d",&mat);
@@ -159,6 +174,25 @@ void lista_func(cadastro cad[]){
     }
 }
 
+void cad_ficha (ficha fic[],cadastro cad[]){
+    int mat,check,j=0;
+    scanf("%d",&mat);
+    check=busca_mat(cad,mat);
+    if(check<=9){
+        do{
+            scanf(" %d ",&cad[check].fic[j].dia);
+            if(cad[check].fic[j].dia!=0){
+                scanf(" %d ",&cad[check].fic[j].mes);
+                scanf(" %d ",&cad[check].fic[j].hora);
+                j++;
+            }
+        }while(cad[check].fic[j].dia!=0);
+    }
+    else if(check == 10){
+        printf("Não é possível cadastrar uma nova ficha de horas extras. O cadastro está cheio.\n");
+    }
+
+}
 /*cad_func
 159 
 Augusto 
@@ -181,3 +215,4 @@ ZA
 WARUDO
 DI
 7896-14*/
+-0_

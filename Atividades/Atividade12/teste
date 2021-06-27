@@ -1,0 +1,135 @@
+.4 .5 .6 .7 .8 .9 1.0 1.2 1.3 1.4 1.6 1.8
+cad_func
+3233
+Fulano De Tal
+19
+Afonso Pena
+33333
+Centro
+Trela
+MS
+79060-000
+cad_func
+1388
+Joseph Of Seelva
+45
+4th of July
+1234
+Center
+Three Lakes
+SK
+11010-010
+cad_ficha
+3233
+1 2 3
+4 5 6
+0
+cad_func
+5150
+Suzi Uki
+33
+Gsx-r
+750
+St. Peter
+Isle of Mann
+SB
+99999-999
+cad_ficha
+1388
+4 5 6
+7 8 9
+8 7 8
+7 8 7
+0
+rel_geral 5150
+cad_ficha
+5150
+1 1 1
+1 2 1
+1 3 1
+1 4 1
+0
+cad_ficha
+5150
+1 1 1
+1 2 1
+1 3 1
+1 4 1
+0
+cad_ficha
+5150
+1 1 1
+1 2 1
+1 3 1
+1 4 1
+0
+cad_ficha
+5150
+1 1 1
+1 2 1
+1 3 1
+1 4 1
+0
+cad_ficha
+5150
+1 1 1
+1 2 1
+1 3 1
+1 4 1
+0
+cad_ficha
+5150
+1 1 1
+1 2 1
+1 3 1
+1 4 1
+0
+cad_ficha
+5150
+1 1 1
+1 2 1
+1 3 1
+1 4 1
+0
+cad_ficha
+5150
+1 1 1
+1 2 1
+1 3 1
+1 4 1
+0
+cad_ficha
+5150
+1 1 1
+1 2 1
+1 3 1
+1 4 1
+0
+cad_ficha
+5150
+1 1 1
+1 2 1
+1 3 1
+1 4 1
+0
+cad_ficha
+1388
+1 2 3
+0
+rel_funcm 1
+rel_funcm 2
+rel_funcm 3
+rel_funcm 4
+rel_funcm 5
+rel_funcm 6
+rel_funcm 7
+rel_funcm 8
+rel_funcm 9
+rel_funcm 10
+rel_funcm 11
+rel_funcm 12
+cad_ficha
+5150
+1 12 34
+0
+rel_funcm 12

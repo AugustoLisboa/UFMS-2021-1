@@ -11,6 +11,7 @@ int main (void){
         int dia;
         int mes;
         int hora;
+        int check2;
     }regextras;
 
     //Dicionario: Endereço
@@ -58,21 +59,23 @@ int main (void){
         }
         else if(strcmp(operator,"cad_ficha")==0){
             scanf(" %d",&matricula);
-            for(tempi=i-1;tempi>=0;tempi--){
+            for(tempi=0;tempi<=i-1;tempi--){
                 if(matricula==cadastro[tempi].mat){
                     do{
-                        cadastro[i].extra[j].mat=matricula;
+                        cadastro[tempi].extra[j].mat=matricula;
                         scanf(" %d",&hora);
-                        scanf(" %d",&cadastro[i].extra[j].dia);
-                        scanf(" %d",&cadastro[i].extra[j].mes);
-                        cadastro[i].extra[j].hora=hora;
+                        scanf(" %d",&cadastro[tempi].extra[j].dia);
+                        scanf(" %d",&cadastro[tempi].extra[j].mes);
+                        cadastro[tempi].extra[j].hora=hora;
                         j++;
                     }while(hora!=0);
-                    for(tempj=j-1;tempj<=0;tempj--){
-                        cadastro[i].salario=cadastro[i].salario+(cadastro[i].extra[tempj].hora*valext[(cadastro[i].extra[tempj].mes)-1]);
+                    for(tempj=0;tempj<=j-1;tempj--){
+                        cadastro[tempi].salario=cadastro[tempi].salario+(cadastro[tempi].extra[tempj].hora*valext[(cadastro[tempi].extra[tempj].mes)-1]);
+                        cadastro[tempi].extra[tempj].check2=1;
                     }
-                    cadastro[i].check=1;
                 }
+                cadastro[i].check=j;
+                j=0;
             }
 
         }
@@ -98,8 +101,10 @@ int main (void){
         }
         else if(strcmp(operator,"rel_funcm")==0){
             for (tempi=i-1;tempi>=0;tempi--){
-                if(cadastro[tempi].check=1){
-                    printf("%s %s\n",cadastro[tempi].nome,cadastro[tempi].sobrenome);   
+                for(tempj=cadastro[tempi].check-1;tempj>=0;tempj--){
+                    if(cadastro[tempi].extra[j].check2==1){
+                        printf("%s %s\n",cadastro[tempi].nome,cadastro[tempi].sobrenome);   
+                    }
                 }
             }
         }
