@@ -11,6 +11,7 @@ void del_func();
 void lista_func();
 void cad_ficha();
 void lista_ficha();
+void del_horas();
 
 
 typedef struct{
@@ -34,7 +35,7 @@ typedef struct{
     }cadastro;
 
 int main (void){
-    int i=0,tempi,mat,checkmat,op=10,posficha[10],ii=0;
+    int i=0,tempi,mat,checkmat,op=10,posficha[10],ii=0,val=0;
     cadastro cad[10];
     ficha fic[20];
     for (ii=0;ii<=9;ii++){
@@ -47,8 +48,9 @@ int main (void){
         op=chama_op();
         switch (op){
         case 1:
-            cad_func(cad,i);
+            cad_func(cad,i,val);
             i++;
+            val++;
             if(i>9){
                 i--;
             }
@@ -56,9 +58,11 @@ int main (void){
         case 2:
             del_func(cad);
             break;
-        
         case 3:
             cad_ficha(fic,cad,i,posficha);
+            break;
+        case 4:
+            del_horas(cad,fic);
             break;
         case 5:
             lista_func(cad,i);
@@ -70,30 +74,33 @@ int main (void){
     }while (op!=0);
 }
 //completo
-void cad_func(cadastro cad[],int i){
+void cad_func(cadastro cad[],int i,int val){
     int mat,checkmat=0;
-    scanf(" %d ",&mat);
-    checkmat=busca_mat(cad,mat);
-    if(checkmat == 404 && i<=9){
-        cad[i].matricula=mat;
-        scanf(" %s ",cad[i].nome);
-        scanf(" %[^\n]%*c ",cad[i].sobre);
-        scanf(" %d ",&cad[i].idade);
-        scanf(" %[^\n]%*c ",cad[i].rua);
-        scanf(" %d ",&cad[i].numero);
-        scanf(" %[^\n]%*c ",cad[i].bairro);
-        scanf(" %[^\n]%*c ",cad[i].cidade);
-        scanf(" %[^\n]%*c ",cad[i].estado);
-        scanf(" %[^\n]%*c ",cad[i].cep);
-        i++;
-    }
-    else if(checkmat<=9){
-        printf("O número de matrícula informado já existe.\n");
-    }
-    else{
-        printf("Não é possível cadastrar um novo funcionário. O cadastro está cheio.\n");
+    if(val<=9){
+        scanf(" %d ",&mat);
+        checkmat=busca_mat(cad,mat);
+        if((checkmat == 404 || checkmat == 10) && i<=9){
+            cad[i].matricula=mat;
+            scanf("%s",cad[i].nome);
+            scanf(" %[^\n]%*c ",cad[i].sobre);
+            scanf(" %d ",&cad[i].idade);
+            scanf(" %[^\n]%*c ",cad[i].rua);
+            scanf(" %d ",&cad[i].numero);
+            scanf(" %[^\n]%*c ",cad[i].bairro);
+            scanf(" %[^\n]%*c ",cad[i].cidade);
+            scanf(" %[^\n]%*c ",cad[i].estado);
+            scanf(" %[^\n]%*c ",cad[i].cep);
+            i++;
+        }
+        else if(checkmat<=9){
+            printf("O número de matrícula informado já existe.\n");
+        }
 
     }
+    else{
+            printf("Não é possível cadastrar um novo funcionário. O cadastro está cheio.\n");
+
+        }
 }
 
 //completo 
@@ -120,7 +127,7 @@ int busca_mat(cadastro cad[], int mat){
 int chama_op(){
     char op[21];
     int seletor;
-    scanf(" %[^\n]%*c",op);
+    scanf(" %s",op);
     if(strcmp(op,"cad_func")==0){
         seletor=1;
     }
@@ -145,7 +152,7 @@ int chama_op(){
     return seletor;
 }
 
-//incompleto, corrigir
+//completo
 void del_func(cadastro cad[]){
     int tempi,mat;
     scanf(" %d ",&mat);
@@ -164,7 +171,7 @@ void del_func(cadastro cad[]){
 //completo
 void lista_func(cadastro cad[],int i){
     int tempi,check=0;
-    for (tempi=0;tempi<=i-1;tempi++){
+    for (tempi=0;tempi<=i;tempi++){
         if(cad[tempi].matricula != 404){
             check=1;
             printf("%s %s, %d anos\n",cad[tempi].nome,cad[tempi].sobre,cad[tempi].idade);
@@ -178,38 +185,38 @@ void lista_func(cadastro cad[],int i){
 
 //completo
 void cad_ficha (ficha fic[],cadastro cad[],int i,int posficha[]){
-    int mat,check,j=0,h=0;
-    scanf("%d",&mat);
+    int mat,check,j=0,h=0,val;
+    scanf(" %d ",&mat);
     check=busca_mat(cad,mat);
     if(check<=9){
         if(posficha[i]<=19){
             if(cad[check].fic[j].dia[h]<=9){
                 do{
                     scanf(" %d ",&cad[check].fic[j].dia[h]);
-                    if(cad[check].fic[j].dia[h]!=0){
+                    cad[check].fic[j].dia[h] = val;
+                    if(val!=0){
                         scanf(" %d ",&cad[check].fic[j].mes[h]);
                         scanf(" %d ",&cad[check].fic[j].hora[h]);
                         posficha[i]++;
                         h++;
                     }
-                }while(cad[check].fic[j].dia[h]!=0);
+                }while(val!=0);
             }
             else{
                 printf("Não é possível cadastrar mais horas extras. A ficha está cheia.\n");
-                cad_ficha(fic,cad,i,posficha);
             }
         }
         else{
             printf("Não é possível cadastrar uma nova ficha de horas extras. O cadastro está cheio.\n");
-            cad_ficha(fic,cad,i,posficha);
         }
     }
     else {
         printf("Não é possível cadastrar uma nova ficha de horas extras. O número de matrícula informado não existe.\n");
-        cad_ficha(fic,cad,i,posficha);
+
     }  
 
 }
+
 
 void lista_ficha(cadastro cad[],ficha fic[]){
     int tempi,temph,tempj,h;
@@ -226,6 +233,15 @@ void lista_ficha(cadastro cad[],ficha fic[]){
                 h=0;
             }
         }
+    }
+}
+
+void del_horas(cadastro cad[],ficha fic[]){
+    int mat,check,j=0,h=0,val;
+    scanf(" %d ",&mat);
+    check=busca_mat(cad,mat);
+    if(check == 10 || check == 404){
+        printf("Não foi possível excluir as horas extras do funcionário. O número de matrícula informado não existe.");
     }
 }
 /*cad_func
